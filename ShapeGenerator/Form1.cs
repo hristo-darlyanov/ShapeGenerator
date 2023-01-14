@@ -1,4 +1,5 @@
 using System.Drawing.Text;
+using System.Reflection;
 
 namespace ShapeGenerator
 {
@@ -28,12 +29,28 @@ namespace ShapeGenerator
             {
                 size = panelXDiff / 2;
             }
-            g.DrawRectangle(p, panelX, panelY, size, size);
+            g.FillRectangle(PickBrush(), panelX, panelY, size, size);
         }
 
         private Color RandomColor()
         {
             return Color.FromArgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
+        }
+
+        private void triangleBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private Brush PickBrush()
+        {
+            Brush result = Brushes.Transparent;
+            Type brushesType = typeof(Brushes);
+            PropertyInfo[] properties = brushesType.GetProperties();
+            int randomBrush = random.Next(properties.Length);
+            result = (Brush)properties[randomBrush].GetValue(null, null);
+
+            return result;
         }
     }
 }
