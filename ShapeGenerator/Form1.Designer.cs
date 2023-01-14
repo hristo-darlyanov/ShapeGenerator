@@ -31,6 +31,7 @@
             this.squareBtn = new System.Windows.Forms.Button();
             this.triangleBtn = new System.Windows.Forms.Button();
             this.circleBtn = new System.Windows.Forms.Button();
+            this.stopGeneratingBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // squareBtn
@@ -66,11 +67,24 @@
             this.circleBtn.UseVisualStyleBackColor = true;
             this.circleBtn.Click += new System.EventHandler(this.circleBtn_Click);
             // 
+            // stopGeneratingBtn
+            // 
+            this.stopGeneratingBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.stopGeneratingBtn.Location = new System.Drawing.Point(550, 387);
+            this.stopGeneratingBtn.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.stopGeneratingBtn.Name = "stopGeneratingBtn";
+            this.stopGeneratingBtn.Size = new System.Drawing.Size(238, 51);
+            this.stopGeneratingBtn.TabIndex = 0;
+            this.stopGeneratingBtn.Text = "Stop Generating";
+            this.stopGeneratingBtn.UseVisualStyleBackColor = true;
+            this.stopGeneratingBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.stopGeneratingBtn);
             this.Controls.Add(this.circleBtn);
             this.Controls.Add(this.triangleBtn);
             this.Controls.Add(this.squareBtn);
@@ -85,5 +99,6 @@
         private Button squareBtn;
         private Button triangleBtn;
         private Button circleBtn;
+        private Button stopGeneratingBtn;
     }
 }

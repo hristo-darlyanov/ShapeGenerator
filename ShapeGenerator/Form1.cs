@@ -12,6 +12,9 @@ namespace ShapeGenerator
         private bool isSquareGenerated;
         private bool isTriangleGenerated;
         private bool isCircleGenerated;
+        Thread squareThread;
+        Thread triangleThread;
+        Thread circleThread;
         Graphics g;
         int panelY;
         int panelX;
@@ -34,17 +37,57 @@ namespace ShapeGenerator
 
         private void squareBtn_Click(object sender, EventArgs e)
         {
-            GenerateSquare();
+            squareThread = new Thread(SquareThread);
+            isSquareGenerated = true;
+            squareThread.Start();
+        }
+
+        private void SquareThread()
+        {
+            while (isSquareGenerated)
+            {
+                GenerateSquare();
+                Thread.Sleep(100);
+            }
         }
 
         private void triangleBtn_Click_1(object sender, EventArgs e)
         {
-            GenerateTriangle();
+            triangleThread = new Thread(TriangleThread);
+            isTriangleGenerated = true;
+            triangleThread.Start();
         }
-        
+
+        private void TriangleThread()
+        {
+            while (isTriangleGenerated)
+            {
+                GenerateTriangle();
+                Thread.Sleep(100);
+            }
+        }
+
         private void circleBtn_Click(object sender, EventArgs e)
         {
-            GenerateCircle();
+            circleThread = new Thread(CircleThread);
+            isCircleGenerated = true;
+            circleThread.Start();
+        }
+
+        private void CircleThread()
+        {
+            while (isCircleGenerated)
+            {
+                GenerateCircle();
+                Thread.Sleep(100);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isSquareGenerated = false;
+            isTriangleGenerated = false;
+            isCircleGenerated = false;
         }
 
         private Brush PickBrush()
@@ -107,5 +150,7 @@ namespace ShapeGenerator
             Graphics g = CreateGraphics();
             g.FillPolygon(PickBrush(), new Point[] { p, new Point(p.X - size, p.Y + (int)(size * Math.Sqrt(3))), new Point(p.X + size, p.Y + (int)(size * Math.Sqrt(3))) });
         }
+
+        
     }
 }
