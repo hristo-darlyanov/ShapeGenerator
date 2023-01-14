@@ -1,5 +1,7 @@
+using System.Drawing;
 using System.Drawing.Text;
 using System.Reflection;
+using System.Security.Policy;
 
 namespace ShapeGenerator
 {
@@ -16,7 +18,6 @@ namespace ShapeGenerator
         {
             int size;
             Graphics g = CreateGraphics();
-            Pen p = new Pen(RandomColor(), 3);
             int panelY = random.Next(0, Height);
             int panelX = random.Next(0, Width);
             int panelYDiff = Height - panelY;
@@ -32,14 +33,28 @@ namespace ShapeGenerator
             g.FillRectangle(PickBrush(), panelX, panelY, size, size);
         }
 
+        private void triangleBtn_Click_1(object sender, EventArgs e)
+        {
+            int size;
+            Graphics g = CreateGraphics();
+            int panelY = random.Next(0, Height);
+            int panelX = random.Next(0, Width);
+            int panelYDiff = Height - panelY;
+            int panelXDiff = Width - panelX;
+            if (panelYDiff < panelXDiff)
+            {
+                size = panelYDiff / 6;
+            }
+            else
+            {
+                size = panelXDiff / 6;
+            }
+            FillTriangle(new Point(panelX, panelY), size);
+        }
+        
         private Color RandomColor()
         {
             return Color.FromArgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
-        }
-
-        private void triangleBtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         private Brush PickBrush()
@@ -49,8 +64,13 @@ namespace ShapeGenerator
             PropertyInfo[] properties = brushesType.GetProperties();
             int randomBrush = random.Next(properties.Length);
             result = (Brush)properties[randomBrush].GetValue(null, null);
-
             return result;
+        }
+
+        private void FillTriangle(Point p, int size)
+        {
+            Graphics g = CreateGraphics();
+            g.FillPolygon(PickBrush(), new Point[] { p, new Point(p.X - size, p.Y + (int)(size * Math.Sqrt(3))), new Point(p.X + size, p.Y + (int)(size * Math.Sqrt(3))) });
         }
     }
 }
