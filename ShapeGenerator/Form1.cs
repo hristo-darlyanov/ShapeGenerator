@@ -2,6 +2,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Reflection;
 using System.Security.Policy;
+using System.Threading;
 
 namespace ShapeGenerator
 {
@@ -11,10 +12,24 @@ namespace ShapeGenerator
         private bool isSquareGenerated;
         private bool isTriangleGenerated;
         private bool isCircleGenerated;
+        Graphics g;
+        int panelY;
+        int panelX;
+        int panelYDiff;
+        int panelXDiff;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void GetValues()
+        {
+            g = CreateGraphics();
+            panelY = random.Next(0, Height);
+            panelX = random.Next(0, Width);
+            panelYDiff = Height - panelY;
+            panelXDiff = Width - panelX;
         }
 
         private void squareBtn_Click(object sender, EventArgs e)
@@ -45,11 +60,7 @@ namespace ShapeGenerator
         private void GenerateSquare()
         {
             int size;
-            Graphics g = CreateGraphics();
-            int panelY = random.Next(0, Height);
-            int panelX = random.Next(0, Width);
-            int panelYDiff = Height - panelY;
-            int panelXDiff = Width - panelX;
+            GetValues();
             if (panelYDiff < panelXDiff)
             {
                 size = panelYDiff / 2;
@@ -64,11 +75,7 @@ namespace ShapeGenerator
         private void GenerateTriangle()
         {
             int size;
-            Graphics g = CreateGraphics();
-            int panelY = random.Next(0, Height);
-            int panelX = random.Next(0, Width);
-            int panelYDiff = Height - panelY;
-            int panelXDiff = Width - panelX;
+            GetValues();
             if (panelYDiff < panelXDiff)
             {
                 size = panelYDiff / 6;
@@ -83,11 +90,7 @@ namespace ShapeGenerator
         private void GenerateCircle()
         {
             int size;
-            Graphics g = CreateGraphics();
-            int panelY = random.Next(0, Height);
-            int panelX = random.Next(0, Width);
-            int panelYDiff = Height - panelY;
-            int panelXDiff = Width - panelX;
+            GetValues();
             if (panelYDiff < panelXDiff)
             {
                 size = panelYDiff / 2;
