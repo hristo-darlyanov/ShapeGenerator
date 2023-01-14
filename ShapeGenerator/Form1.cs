@@ -52,6 +52,25 @@ namespace ShapeGenerator
             FillTriangle(new Point(panelX, panelY), size);
         }
         
+        private void circleBtn_Click(object sender, EventArgs e)
+        {
+            int size;
+            Graphics g = CreateGraphics();
+            int panelY = random.Next(0, Height);
+            int panelX = random.Next(0, Width);
+            int panelYDiff = Height - panelY;
+            int panelXDiff = Width - panelX;
+            if (panelYDiff < panelXDiff)
+            {
+                size = panelYDiff / 2;
+            }
+            else
+            {
+                size = panelXDiff / 2;
+            }
+            g.FillEllipse(PickBrush(), panelX, panelY, size, size);
+        }
+        
         private Color RandomColor()
         {
             return Color.FromArgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
@@ -72,5 +91,7 @@ namespace ShapeGenerator
             Graphics g = CreateGraphics();
             g.FillPolygon(PickBrush(), new Point[] { p, new Point(p.X - size, p.Y + (int)(size * Math.Sqrt(3))), new Point(p.X + size, p.Y + (int)(size * Math.Sqrt(3))) });
         }
+
+        
     }
 }
