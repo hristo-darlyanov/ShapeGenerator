@@ -6,5 +6,10 @@ namespace ShapeGenerator
         {
             InitializeComponent();
         }
+
+        private void squareBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,12 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.squareBtn = new System.Windows.Forms.Button();
+            this.triangleBtn = new System.Windows.Forms.Button();
+            this.circleBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // squareBtn
+            // 
+            this.squareBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.squareBtn.Location = new System.Drawing.Point(18, 12);
+            this.squareBtn.Name = "squareBtn";
+            this.squareBtn.Size = new System.Drawing.Size(233, 43);
+            this.squareBtn.TabIndex = 0;
+            this.squareBtn.Text = "SQUARE";
+            this.squareBtn.UseVisualStyleBackColor = true;
+            this.squareBtn.Click += new System.EventHandler(this.squareBtn_Click);
+            // 
+            // triangleBtn
+            // 
+            this.triangleBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.triangleBtn.Location = new System.Drawing.Point(284, 12);
+            this.triangleBtn.Name = "triangleBtn";
+            this.triangleBtn.Size = new System.Drawing.Size(233, 43);
+            this.triangleBtn.TabIndex = 1;
+            this.triangleBtn.Text = "TRIANGLE";
+            this.triangleBtn.UseVisualStyleBackColor = true;
+            // 
+            // circleBtn
+            // 
+            this.circleBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.circleBtn.Location = new System.Drawing.Point(550, 12);
+            this.circleBtn.Name = "circleBtn";
+            this.circleBtn.Size = new System.Drawing.Size(233, 43);
+            this.circleBtn.TabIndex = 2;
+            this.circleBtn.Text = "CIRCLE";
+            this.circleBtn.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(18, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(765, 368);
+            this.panel1.TabIndex = 3;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.circleBtn);
+            this.Controls.Add(this.triangleBtn);
+            this.Controls.Add(this.squareBtn);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button squareBtn;
+        private Button triangleBtn;
+        private Button circleBtn;
+        private Panel panel1;
     }
 }
