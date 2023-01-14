@@ -8,6 +8,9 @@ namespace ShapeGenerator
     public partial class Form1 : Form
     {
         private static readonly Random random = new Random();
+        private bool isSquareGenerated;
+        private bool isTriangleGenerated;
+        private bool isCircleGenerated;
 
         public Form1()
         {
@@ -15,6 +18,31 @@ namespace ShapeGenerator
         }
 
         private void squareBtn_Click(object sender, EventArgs e)
+        {
+            GenerateSquare();
+        }
+
+        private void triangleBtn_Click_1(object sender, EventArgs e)
+        {
+            GenerateTriangle();
+        }
+        
+        private void circleBtn_Click(object sender, EventArgs e)
+        {
+            GenerateCircle();
+        }
+
+        private Brush PickBrush()
+        {
+            Brush result = Brushes.Transparent;
+            Type brushesType = typeof(Brushes);
+            PropertyInfo[] properties = brushesType.GetProperties();
+            int randomBrush = random.Next(properties.Length);
+            result = (Brush)properties[randomBrush].GetValue(null, null);
+            return result;
+        }
+
+        private void GenerateSquare()
         {
             int size;
             Graphics g = CreateGraphics();
@@ -33,7 +61,7 @@ namespace ShapeGenerator
             g.FillRectangle(PickBrush(), panelX, panelY, size, size);
         }
 
-        private void triangleBtn_Click_1(object sender, EventArgs e)
+        private void GenerateTriangle()
         {
             int size;
             Graphics g = CreateGraphics();
@@ -51,8 +79,8 @@ namespace ShapeGenerator
             }
             FillTriangle(new Point(panelX, panelY), size);
         }
-        
-        private void circleBtn_Click(object sender, EventArgs e)
+
+        private void GenerateCircle()
         {
             int size;
             Graphics g = CreateGraphics();
@@ -70,28 +98,11 @@ namespace ShapeGenerator
             }
             g.FillEllipse(PickBrush(), panelX, panelY, size, size);
         }
-        
-        private Color RandomColor()
-        {
-            return Color.FromArgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
-        }
-
-        private Brush PickBrush()
-        {
-            Brush result = Brushes.Transparent;
-            Type brushesType = typeof(Brushes);
-            PropertyInfo[] properties = brushesType.GetProperties();
-            int randomBrush = random.Next(properties.Length);
-            result = (Brush)properties[randomBrush].GetValue(null, null);
-            return result;
-        }
 
         private void FillTriangle(Point p, int size)
         {
             Graphics g = CreateGraphics();
             g.FillPolygon(PickBrush(), new Point[] { p, new Point(p.X - size, p.Y + (int)(size * Math.Sqrt(3))), new Point(p.X + size, p.Y + (int)(size * Math.Sqrt(3))) });
         }
-
-        
     }
 }
