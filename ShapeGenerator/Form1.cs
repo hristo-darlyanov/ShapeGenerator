@@ -106,11 +106,11 @@ namespace ShapeGenerator
             GetValues();
             if (panelYDiff < panelXDiff)
             {
-                size = panelYDiff / 2;
+                size = panelYDiff / 4;
             }
             else
             {
-                size = panelXDiff / 2;
+                size = panelXDiff / 4;
             }
             g.FillRectangle(PickBrush(), panelX, panelY, size, size);
         }
@@ -136,11 +136,11 @@ namespace ShapeGenerator
             GetValues();
             if (panelYDiff < panelXDiff)
             {
-                size = panelYDiff / 2;
+                size = panelYDiff / 4;
             }
             else
             {
-                size = panelXDiff / 2;
+                size = panelXDiff / 4;
             }
             g.FillEllipse(PickBrush(), panelX, panelY, size, size);
         }
@@ -150,7 +150,5 @@ namespace ShapeGenerator
             Graphics g = CreateGraphics();
             g.FillPolygon(PickBrush(), new Point[] { p, new Point(p.X - size, p.Y + (int)(size * Math.Sqrt(3))), new Point(p.X + size, p.Y + (int)(size * Math.Sqrt(3))) });
         }
-
-        
     }
 }
